@@ -1,0 +1,30 @@
+{
+    "home": {
+      "title": "Restorant Sepeti",
+
+      "buttons": {
+        "istanbul": {
+          "name":"İstanbul",
+          "country":"Türkiye"
+        },
+        "berlin": {
+          "name":"Berlin",
+          "country":"Almanya"
+        },"london": {
+          "name":"Londra",
+          "country":"İngiltere"
+        },"rome": {
+          "name":"Roma",
+          "country":"İtalya"
+        },"amsterdam": {
+          "name":"Amsterdam",
+          "country":"Hollanda"
+        },"sydney": {
+          "name":"Sidney",
+          "country":"Avusturalya"
+        }
+      }
+    }
+  
+  }
+  

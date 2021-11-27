@@ -1,0 +1,29 @@
+{
+    "home": {
+      "title": "Restaurant Korb",
+  
+      "buttons": {
+        "istanbul": {
+          "name":"Istanbul",
+          "country":"Türkei"
+        },
+        "berlin": {
+          "name":"Berlin",
+          "country":"Deutschland"
+        },"london": {
+          "name":"London",
+          "country":"England"
+        },"rome": {
+          "name":"Rom",
+          "country":"Italien"
+        },"amsterdam": {
+          "name":"Amsterdam.",
+          "country":"Niederlande"
+        },"sydney": {
+          "name":"Sydney.",
+          "country":"Australien"
+        }
+      }
+    }
+  }
+  

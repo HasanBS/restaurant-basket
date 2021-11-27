@@ -1,0 +1,29 @@
+{
+  "home": {
+    "title": "Restaurant Basket",
+
+    "buttons": {
+      "istanbul": {
+        "name":"Istanbul",
+        "country":"Turkey"
+      },
+      "berlin": {
+        "name":"Berlin",
+        "country":"Germany"
+      },"london": {
+        "name":"London",
+        "country":"England"
+      },"rome": {
+        "name":"Rome",
+        "country":"Italy"
+      },"amsterdam": {
+        "name":"Amsterdam",
+        "country":"Netherlands"
+      },"sydney": {
+        "name":"Sydney",
+        "country":"Australia"
+      }
+    }
+  }
+
+}
