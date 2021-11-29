@@ -16,7 +16,7 @@ dependencies:
 #State mangment
   bloc: ^8.0.1
   flutter_bloc: ^8.0.0
-  bloc_test: ^9.0.1
+
 
 #Visual elements
   auto_size_text: ^3.0.0
