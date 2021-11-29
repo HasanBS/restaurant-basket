@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class SplashService {
   static SplashService? _instance;
 
@@ -12,9 +10,6 @@ class SplashService {
   SplashService._init();
 
   Future<void> serviceInit() async {
-    WidgetsFlutterBinding.ensureInitialized();
-    // await CounterDatabaseProvider.instance.initDB();
-    // await CountdownDatabaseProvider.instance.initDB();
-    // await TodoDatabaseProvider.instance.initDB();
+    //For any init operation on splash screen
   }
 }

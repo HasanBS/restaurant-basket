@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:restaurant_basket/view/splash/cubit/splash_cubit.dart';
+import '../cubit/splash_cubit.dart';
 
 import '../../../core/components/lottie/lottie_widget.dart';
 import '../../../core/constants/image/image_constatns.dart';
@@ -22,14 +22,11 @@ class SplashView extends StatelessWidget {
 
   Scaffold _buildScaffoldBody(BuildContext context) {
     return Scaffold(
-        body: Container(
-      color: context.colorScheme.primary,
-      child: SafeArea(
-        child: Stack(
-          children: [
-            _buildAnimatedLottie(context),
-          ],
-        ),
+        body: SafeArea(
+      child: Stack(
+        children: [
+          _buildAnimatedLottie(context),
+        ],
       ),
     ));
   }
@@ -38,12 +35,12 @@ class SplashView extends StatelessWidget {
     return AnimatedAlign(
       alignment: Alignment.center,
       duration: context.durationSlow,
-      // child: LottieWidget(
-      //   path: context.isDarkTheme
-      //       ? ImageConstants.instance.iconMotionDarkLoti
-      //       : ImageConstants.instance.iconMotionLightLoti,
-      //   repeat: false,
-      // ),
+      child: LottieWidget(
+        path: context.isDarkTheme
+            ? ImageConstants.instance.lottieDark
+            : ImageConstants.instance.lottie,
+        repeat: false,
+      ),
     );
   }
 }

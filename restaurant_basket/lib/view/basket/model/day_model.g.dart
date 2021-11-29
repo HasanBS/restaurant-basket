@@ -8,8 +8,8 @@ part of 'day_model.dart';
 
 Day _$DayFromJson(Map<String, dynamic> json) {
   return Day(
-    start: json['start'] as String?,
-    end: json['end'] as String?,
+    start: json['start'] as String,
+    end: json['end'] as String,
   );
 }
 

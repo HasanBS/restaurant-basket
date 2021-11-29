@@ -1,10 +1,11 @@
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
-import 'package:restaurant_basket/core/init/network/network_manager.dart';
-import 'package:restaurant_basket/product/model/request/request_model.dart';
-import 'package:restaurant_basket/view/basket/model/restaurant_model.dart';
-import 'package:restaurant_basket/view/basket/service/basket_service.dart';
-import 'package:restaurant_basket/view/basket/service/ibasket_service.dart';
+
+import '../../../core/constants/app/app_constants.dart';
+import '../../../core/init/network/network_manager.dart';
+import '../../../product/model/request/request_model.dart';
+import '../model/restaurant_model.dart';
+import '../service/basket_service.dart';
+import '../service/ibasket_service.dart';
 
 part 'basket_state.dart';
 
@@ -16,33 +17,38 @@ class BasketCubit extends Cubit<BasketState> {
   bool _isBasketLoading = false;
 
   BasketCubit(this.requestModel) : super(BasketInitial()) {
-    _basketService = BasketService(NetworkManager.instance);
+    _basketService =
+        BasketService(NetworkManager.instance(requestModel.language));
   }
 
   Future<void> loadPage() async {
-    emit(PageLoadInProgress());
-    final response = await _basketService.fetchRestaurantList(requestModel);
-    //restaurantList = response!.merchants ;
-    if (response != null) {
-      // restaurantList.addAll(response.merchants!);
-      restaurantList = response.merchants!;
-      _limit = response.limit!;
+    //First Page Load
+    try {
+      emit(PageLoadInProgress());
+      final response = await _basketService.fetchRestaurantList(requestModel);
+      if (response != null) {
+        restaurantList = response.merchants!;
+        _limit = response.limit!;
+      }
+      emit(BasketLoaded(restaurantList: restaurantList));
+    } catch (e) {
+      emit(ErrorLoad(error: e.toString())); //load error on page
     }
-    emit(BasketLoaded(restaurantList: restaurantList));
   }
 
   Future<void> lazyLoad() async {
+    //lazy load for if user reach the limit
     if (!_isBasketLoading) {
       _changeLoading();
       emit(LazyLoadInProgress());
       final lazyRequest = RequestModel(
           place: requestModel.place,
           language: requestModel.language,
-          limit: 6,
+          limit: AppConstants.LAZYLOADLIMIT,
           offset: _limit);
       final response = await _basketService.fetchRestaurantList(lazyRequest);
       if (response != null) {
-        _limit += 6;
+        _limit += AppConstants.LAZYLOADLIMIT;
         restaurantList.addAll(response.merchants!);
       }
       _changeLoading();

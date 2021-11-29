@@ -24,6 +24,25 @@
           "country":"Australien"
         }
       }
-    }
+    },
+
+    "basket":{
+      "cuisine":"Küche",
+      "number":"Telefonnummer",
+      "avaibleTimes":{
+        "title":"Verfügbare Zeiten",
+        "open":"Offen",
+        "close":"Geschloßen",
+        "sunday":"SONNTAG",
+        "monday":"MONTAG",
+        "tuesday":"DIENSTAG",
+        "wednesday":"MITTWOCH",
+        "thursday":"DONNERSTAG",
+        "friday":"FREITAG",
+        "saturday":"SAMSTAG"
+      }
+    },
+
+    "loadError":"Netzwerkverbindungsfehler Ist Passiert, Bitte Überprüfen Sie Ihre Netzwerkverbindung"
   }
   

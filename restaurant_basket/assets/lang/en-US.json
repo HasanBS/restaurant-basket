@@ -24,6 +24,25 @@
         "country":"Australia"
       }
     }
-  }
+  },
+
+  "basket":{
+    "cuisine":"Cuisine",
+    "number":"Phone Number",
+    "avaibleTimes":{
+      "title":"Avaible Times",
+      "open":"Open",
+      "close":"Close",
+      "sunday":"SUNDAY",
+      "monday":"MONDAY",
+      "tuesday":"TUESDAY",
+      "wednesday":"WEDNESDAY",
+      "thursday":"THURSDAY",
+      "friday":"FRIDAY",
+      "saturday":"SATURDAY"
+    }
+  },
+
+  "loadError":"Network Connection Error Happened Please Check Your Network Connection"
 
 }

@@ -1,14 +1,14 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:restaurant_basket/core/constants/model/city_constants.dart';
-import 'package:restaurant_basket/core/constants/navigation/navigation_constants.dart';
-import 'package:restaurant_basket/core/extension/context_extension.dart';
-import 'package:restaurant_basket/core/extension/string_extension.dart';
-import 'package:restaurant_basket/core/init/lang/locale_keys.g.dart';
-import 'package:restaurant_basket/core/init/navigation/navigation_service.dart';
-import 'package:restaurant_basket/product/card/city_card.dart';
-import 'package:restaurant_basket/product/model/request/request_model.dart';
+import '../../../core/components/text/auto_locale_text.dart';
+import '../../../core/constants/app/app_constants.dart';
+import '../../../core/constants/app/city_constants.dart';
+import '../../../core/constants/navigation/navigation_constants.dart';
+import '../../../core/extension/context_extension.dart';
+import '../../../core/init/lang/locale_keys.g.dart';
+import '../../../core/init/navigation/navigation_service.dart';
+import '../../../product/card/city_card.dart';
+import '../../../product/model/request/request_model.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -24,8 +24,8 @@ class HomeView extends StatelessWidget {
   ListView _body(BuildContext context) {
     return ListView.builder(
       physics: const NeverScrollableScrollPhysics(),
-      itemCount: 6,
-      itemExtent: context.bodyHeight(_appBar) / 6,
+      itemCount: AppConstants.ELEMENTINPAGE,
+      itemExtent: context.bodyHeight(_appBar) / AppConstants.ELEMENTINPAGE,
       itemBuilder: (context, index) => _cardButton(context, index),
     );
   }
@@ -36,7 +36,7 @@ class HomeView extends StatelessWidget {
           final RequestModel requestModel = RequestModel(
               place: CityConstants.instance.cities[index].cityText,
               language: context.deviceLocale.toString(),
-              limit: 12,
+              limit: AppConstants.PAGELOADLIMIT,
               offset: 0);
           NavigationService.instance.navigateToPage(
               path: NavigationConstants.BASKET, data: requestModel);
@@ -54,7 +54,7 @@ class HomeView extends StatelessWidget {
   AppBar get _appBar {
     return AppBar(
       centerTitle: true,
-      title: AutoSizeText(LocaleKeys.home_title.locale),
+      title: const AutoLocaleText(value: LocaleKeys.home_title),
     );
   }
 }

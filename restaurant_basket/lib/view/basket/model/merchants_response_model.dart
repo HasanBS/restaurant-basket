@@ -1,7 +1,7 @@
-import 'package:restaurant_basket/core/base/model/ibase_model.dart';
-import 'package:restaurant_basket/view/basket/model/restaurant_model.dart';
-
 import 'package:json_annotation/json_annotation.dart';
+
+import '../../../core/base/model/ibase_model.dart';
+import 'restaurant_model.dart';
 
 part 'merchants_response_model.g.dart';
 

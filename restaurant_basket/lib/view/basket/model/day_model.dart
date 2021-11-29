@@ -4,12 +4,12 @@ part 'day_model.g.dart';
 
 @JsonSerializable()
 class Day {
-  String? start;
-  String? end;
+  final String start;
+  final String end;
 
   Day({
-    this.start,
-    this.end,
+    required this.start,
+    required this.end,
   });
 
   factory Day.fromJson(Map<String, dynamic> json) => _$DayFromJson(json);

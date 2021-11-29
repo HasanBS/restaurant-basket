@@ -1,8 +1,10 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:restaurant_basket/core/extension/context_extension.dart';
-import 'package:restaurant_basket/core/extension/string_extension.dart';
-import 'package:restaurant_basket/view/basket/model/restaurant_model.dart';
+
+import '../../core/constants/image/image_constatns.dart';
+import '../../core/extension/context_extension.dart';
+import '../../core/extension/string_extension.dart';
+import '../../view/basket/model/restaurant_model.dart';
 
 class RestaurantCard extends Card {
   RestaurantCard(
@@ -23,43 +25,51 @@ class RestaurantCard extends Card {
                     height: imgSize ?? context.dynamicHeight(0.15),
                     width: imgSize ?? context.dynamicHeight(0.15),
                     fit: BoxFit.cover,
-                    image: NetworkImage(model.images.first!.url!),
-                    placeholder: const AssetImage(
-                      'assets/images/png/sdney.png',
-                    ),
+                    image: NetworkImage(model.images.isNotEmpty
+                        ? model.images.first!.url!
+                        : context.isDarkTheme
+                            ? 'https://raw.githubusercontent.com/HasanBS/Abacus-App/main/assets/basketImgDark.png'
+                            : 'https://raw.githubusercontent.com/HasanBS/Abacus-App/main/assets/basketImgLight.png'),
+                    placeholder: AssetImage(context.isDarkTheme
+                        ? ImageConstants.instance.basketImgDark
+                        : ImageConstants.instance.basketImgLight),
                   ),
-                  Padding(
-                    padding: EdgeInsets.all(context.normalValueW),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          width: context.dynamicWidth(0.4),
-                          child: AutoSizeText(
+                  SizedBox(
+                    width: context.dynamicWidth(0.76) -
+                        (imgSize ?? context.dynamicHeight(0.15)),
+                    child: Padding(
+                      padding: EdgeInsets.all(context.normalValueW),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          AutoSizeText(
                             model.name,
                             style: context.textTheme.headline3,
                             overflow: TextOverflow.fade,
+                            maxLines: 2,
                           ),
-                        ),
-                        AutoSizeText(
-                          '',
-                          style: context.textTheme.subtitle1,
-                        ),
-                        AutoSizeText(
-                          model.location.address!.city!,
-                          style: context.textTheme.bodyText1,
-                        )
-                      ],
+                          AutoSizeText(
+                            model.priceString,
+                            style: context.textTheme.subtitle1,
+                          ),
+                          AutoSizeText(
+                            model.location.address.district ?? '',
+                            style: context.textTheme.bodyText1,
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ],
               ),
-              Padding(
+              Container(
                 padding: EdgeInsets.all(context.normalValueW),
+                width: context.dynamicWidth(0.24),
                 child: AutoSizeText(
                   '${model.reviewScore.intString}/6',
                   style: context.textTheme.headline1,
+                  maxLines: 1,
                 ),
               ),
             ],

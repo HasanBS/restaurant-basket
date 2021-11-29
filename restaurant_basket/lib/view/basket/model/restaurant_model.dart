@@ -1,9 +1,9 @@
+import 'package:json_annotation/json_annotation.dart';
+
 import 'images_model.dart';
 import 'location_model.dart';
 import 'opening_times_model.dart';
 import 'tag_groups_model.dart';
-
-import 'package:json_annotation/json_annotation.dart';
 
 part 'restaurant_model.g.dart';
 

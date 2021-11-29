@@ -1,18 +1,18 @@
+import 'package:json_annotation/json_annotation.dart';
+
 import 'address_model.dart';
 import 'coordinates_model.dart';
-
-import 'package:json_annotation/json_annotation.dart';
 
 part 'location_model.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class Location {
-  Coordinates? coordinates;
-  Address? address;
+  final Coordinates coordinates;
+  final Address address;
 
   Location({
-    this.coordinates,
-    this.address,
+    required this.coordinates,
+    required this.address,
   });
 
   factory Location.fromJson(Map<String, dynamic> json) =>

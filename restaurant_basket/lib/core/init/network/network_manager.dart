@@ -9,14 +9,16 @@ import 'icore_dio.dart';
 class NetworkManager {
   static NetworkManager? _instance;
 
-  static NetworkManager get instance {
-    return _instance ??= NetworkManager._init();
+  static NetworkManager instance(String langKey) {
+    return _instance ??= NetworkManager._init(langKey);
   }
 
   late ICoreDio coreDio;
 
-  NetworkManager._init() {
-    final baseOptions = BaseOptions(baseUrl: AppConstants.API_URL);
+  NetworkManager._init(String header) {
+    final baseOptions = BaseOptions(
+        baseUrl: AppConstants.API_URL,
+        headers: {AppConstants.LANG_HEADER: header});
     coreDio = CoreDio(baseOptions);
   }
 }

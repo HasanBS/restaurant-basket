@@ -1,6 +1,6 @@
-import 'standard_opening_times_model.dart';
-
 import 'package:json_annotation/json_annotation.dart';
+
+import 'standard_opening_times_model.dart';
 
 part 'opening_times_model.g.dart';
 

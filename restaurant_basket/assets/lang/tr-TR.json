@@ -24,7 +24,26 @@
           "country":"Avusturalya"
         }
       }
-    }
+    },
+
+    "basket":{
+      "cuisine":"Mutfak",
+      "number":"Telefon Numarası",
+      "avaibleTimes":{
+        "title":"Açılış Zamanları",
+        "open":"Açılış",
+        "close":"Kapanış",
+        "sunday":"PAZAR",
+        "monday":"PAZARTESİ",
+        "tuesday":"SALI",
+        "wednesday":"ÇARŞAMBA",
+        "thursday":"PERŞEMBE",
+        "friday":"CUMA",
+        "saturday":"CUMARTESİ"
+      }
+    },
+
+    "loadError":"Ağ Bağlantısı Hatası Oldu Lütfen Ağ Bağlantınızı Kontrol Edin"
   
   }
   

@@ -1,7 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:restaurant_basket/core/extension/context_extension.dart';
-import 'package:restaurant_basket/product/model/city/city_model.dart';
+
+import '../../core/extension/context_extension.dart';
+import '../model/city/city_model.dart';
 
 class CityCard extends Card {
   CityCard(
@@ -19,7 +20,7 @@ class CityCard extends Card {
                   image: DecorationImage(
                     fit: BoxFit.fill,
                     image: AssetImage(
-                      model.imgPath,
+                      context.isDarkTheme ? model.imgPathD : model.imgPathL,
                     ),
                   ),
                 ),

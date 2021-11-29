@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:restaurant_basket/product/model/request/request_model.dart';
-import 'package:restaurant_basket/view/Splash/view/splash_view.dart';
-import 'package:restaurant_basket/view/basket/view/basket_view.dart';
-import 'package:restaurant_basket/view/home/view/home_view.dart';
 
+import '../../../product/model/request/request_model.dart';
+import '../../../view/Splash/view/splash_view.dart';
+import '../../../view/basket/model/restaurant_model.dart';
+import '../../../view/basket/view/basket_view.dart';
+import '../../../view/basket/view/restaurant_view.dart';
+import '../../../view/home/view/home_view.dart';
 import '../../components/card/not_found_navigation_widget.dart';
 import '../../constants/navigation/navigation_constants.dart';
 
@@ -26,6 +28,10 @@ class NavigationRoute {
         return normalNavigate(
           BasketView(requestModel: args.arguments! as RequestModel),
         );
+
+      case NavigationConstants.RESTAURANT:
+        return normalNavigate(
+            RestaurantView(model: args.arguments! as RestaurantModel));
 
       // case NavigationConstants.COUNTDOWNPAGE:
       //   return normalNavigate(CountdownPageView(model: args.arguments! as CountdownModel));

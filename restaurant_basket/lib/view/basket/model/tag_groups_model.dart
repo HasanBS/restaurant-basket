@@ -5,12 +5,12 @@ part 'tag_groups_model.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class TagGroups {
-  String? type;
-  List<Tags?>? tags;
+  final String type;
+  final List<Tags> tags;
 
   TagGroups({
-    this.type,
-    this.tags,
+    required this.type,
+    required this.tags,
   });
 
   factory TagGroups.fromJson(Map<String, dynamic> json) =>

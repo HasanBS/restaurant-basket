@@ -17,6 +17,9 @@ StandardOpeningTimes _$StandardOpeningTimesFromJson(Map<String, dynamic> json) {
     THURSDAY: (json['THURSDAY'] as List<dynamic>?)
         ?.map((e) => Day.fromJson(e as Map<String, dynamic>))
         .toList(),
+    TUESDAY: (json['TUESDAY'] as List<dynamic>?)
+        ?.map((e) => Day.fromJson(e as Map<String, dynamic>))
+        .toList(),
     SUNDAY: (json['SUNDAY'] as List<dynamic>?)
         ?.map((e) => Day.fromJson(e as Map<String, dynamic>))
         .toList(),
@@ -35,6 +38,7 @@ Map<String, dynamic> _$StandardOpeningTimesToJson(
       'WEDNESDAY': instance.WEDNESDAY?.map((e) => e.toJson()).toList(),
       'MONDAY': instance.MONDAY?.map((e) => e.toJson()).toList(),
       'THURSDAY': instance.THURSDAY?.map((e) => e.toJson()).toList(),
+      'TUESDAY': instance.TUESDAY?.map((e) => e.toJson()).toList(),
       'SUNDAY': instance.SUNDAY?.map((e) => e.toJson()).toList(),
       'FRIDAY': instance.FRIDAY?.map((e) => e.toJson()).toList(),
       'SATURDAY': instance.SATURDAY?.map((e) => e.toJson()).toList(),

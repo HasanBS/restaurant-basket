@@ -1,6 +1,6 @@
-import 'package:restaurant_basket/core/init/network/network_manager.dart';
-import 'package:restaurant_basket/product/model/request/request_model.dart';
-import 'package:restaurant_basket/view/basket/model/merchants_response_model.dart';
+import '../../../core/init/network/network_manager.dart';
+import '../../../product/model/request/request_model.dart';
+import '../model/merchants_response_model.dart';
 
 abstract class IBasketService {
   final NetworkManager manager;

@@ -2,11 +2,17 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:restaurant_basket/core/extension/context_extension.dart';
-import 'package:restaurant_basket/product/card/restaurant_card.dart';
-import 'package:restaurant_basket/product/model/request/request_model.dart';
-import 'package:restaurant_basket/view/basket/cubit/basket_cubit.dart';
-import 'package:restaurant_basket/view/basket/model/restaurant_model.dart';
+import '../../../core/components/text/auto_locale_text.dart';
+import '../../../core/init/lang/locale_keys.g.dart';
+
+import '../../../core/constants/app/app_constants.dart';
+import '../../../core/constants/navigation/navigation_constants.dart';
+import '../../../core/extension/context_extension.dart';
+import '../../../core/init/navigation/navigation_service.dart';
+import '../../../product/card/restaurant_card.dart';
+import '../../../product/model/request/request_model.dart';
+import '../cubit/basket_cubit.dart';
+import '../model/restaurant_model.dart';
 
 class BasketView extends StatelessWidget {
   final RequestModel requestModel;
@@ -24,20 +30,19 @@ class BasketView extends StatelessWidget {
   }
 
   AppBar get _appBar {
-    return AppBar(
-      leading: const BackButton(),
-      title: AutoSizeText(requestModel.place),
-    );
+    return AppBar(title: AutoSizeText(requestModel.place));
   }
 
   BlocConsumer _body(BuildContext context) {
     return BlocConsumer<BasketCubit, BasketState>(
       listener: (context, state) {
         _scrollController.addListener(
+          //Listiner for activate lazy load
           () async {
             if (_scrollController.position.pixels >
                     (_scrollController.position.maxScrollExtent -
-                        context.object6Height(_appBar) * 3) &&
+                        context.object6Height(_appBar) *
+                            AppConstants.LAZYLOADBEFORE) &&
                 state is BasketLoaded) {
               await context.read<BasketCubit>().lazyLoad();
             }
@@ -45,19 +50,24 @@ class BasketView extends StatelessWidget {
         );
       },
       builder: (context, state) {
-        if (state is BasketLoaded || state is LazyLoadInProgress) {
-          return ListView.builder(
-              controller: _scrollController,
-              itemExtent: context.bodyHeight(_appBar) / 6,
-              itemCount: context.read<BasketCubit>().restaurantList.length,
-              itemBuilder: (context, index) => _cardButton(
-                  context, context.watch<BasketCubit>().restaurantList[index]));
-        } else if (state is PageLoadInProgress) {
+        if (state is PageLoadInProgress) {
           return const Center(
             child: CircularProgressIndicator(),
           );
+        } else if (state is ErrorLoad) {
+          return const Scaffold(
+            body: Center(
+              child: AutoLocaleText(value: LocaleKeys.loadError),
+            ),
+          );
         } else {
-          return Container();
+          return ListView.builder(
+              controller: _scrollController,
+              itemExtent:
+                  context.bodyHeight(_appBar) / AppConstants.ELEMENTINPAGE,
+              itemCount: context.read<BasketCubit>().restaurantList.length,
+              itemBuilder: (context, index) => _cardButton(
+                  context, context.watch<BasketCubit>().restaurantList[index]));
         }
       },
     );
@@ -65,7 +75,10 @@ class BasketView extends StatelessWidget {
 
   ElevatedButton _cardButton(BuildContext context, RestaurantModel model) {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: () {
+        NavigationService.instance
+            .navigateToPage(path: NavigationConstants.RESTAURANT, data: model);
+      },
       child: _restaurantCard(context, model),
     );
   }
@@ -74,21 +87,7 @@ class BasketView extends StatelessWidget {
     return RestaurantCard(
       context,
       model: model,
-      imgSize: context.bodyHeight(_appBar) / 6,
+      imgSize: context.bodyHeight(_appBar) / AppConstants.ELEMENTINPAGE,
     );
   }
 }
-//imageUrl: model.images.isNotEmpty
-      //     ? model.images.first!.url!
-      //     : 'https://picsum.photos/250?image=9',
-      // title: model.name,
-      // price: model.tagGroups.first!.type!,
-      // body: "Cafe\nBerlin",
-      // rate: model.reviewScore,
-
-
-      // if (index ==
-      //               context.watch<BasketCubit>().restaurantList.length) {
-      //             context.read<BasketCubit>().lazyLoad();
-      //             return const CupertinoActivityIndicator();
-      //           } else {

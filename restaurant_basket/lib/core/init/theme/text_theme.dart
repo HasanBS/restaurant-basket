@@ -38,10 +38,19 @@ class TextTheme {
 
 //Element body
   final TextStyle bodyText1 = TextStyle(
+    height: 1.2.sp,
     fontWeight: FontWeight.w300,
     fontFamily: "Montserrat",
     fontStyle: FontStyle.normal,
-    fontSize: 12.sp,
+    fontSize: 16.sp,
+  );
+
+  //Element body
+  final TextStyle bodyText2 = TextStyle(
+    fontWeight: FontWeight.w300,
+    fontFamily: "Montserrat",
+    fontStyle: FontStyle.normal,
+    fontSize: 24.sp,
   );
 
 //Price Ratio
