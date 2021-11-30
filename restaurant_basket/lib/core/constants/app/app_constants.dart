@@ -7,4 +7,5 @@ class AppConstants {
   static const PAGELOADLIMIT = 120;
   static const LAZYLOADLIMIT = 30;
   static const LAZYLOADBEFORE = 10;
+  static const STARTOFFSET = 0;
 }

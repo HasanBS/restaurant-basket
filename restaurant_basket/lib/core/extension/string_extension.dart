@@ -26,38 +26,38 @@ extension RestaurantModelExtension on RestaurantModel {
   String get avaibleTimesList {
     final buffer = StringBuffer();
     final model = this;
-    if (model.openingTimes.standardOpeningTimes != null) {
-      final openingTimes = model.openingTimes.standardOpeningTimes;
 
-      if (openingTimes!.SUNDAY != null) {
-        buffer.write(
-            "${LocaleKeys.basket_avaibleTimes_sunday.locale}\n${LocaleKeys.basket_avaibleTimes_open.locale} : ${openingTimes.SUNDAY!.first.start} - ${LocaleKeys.basket_avaibleTimes_close.locale} : ${openingTimes.SUNDAY!.first.end}\n");
-      }
-      if (openingTimes.MONDAY != null) {
-        buffer.write(
-            "${LocaleKeys.basket_avaibleTimes_monday.locale}\n${LocaleKeys.basket_avaibleTimes_open.locale} : ${openingTimes.MONDAY!.first.start} - ${LocaleKeys.basket_avaibleTimes_close.locale} : ${openingTimes.MONDAY!.first.end}\n");
-      }
-      if (openingTimes.TUESDAY != null) {
-        buffer.write(
-            "${LocaleKeys.basket_avaibleTimes_thursday.locale}\n${LocaleKeys.basket_avaibleTimes_open.locale} : ${openingTimes.TUESDAY!.first.start} - ${LocaleKeys.basket_avaibleTimes_close.locale} : ${openingTimes.TUESDAY!.first.end}\n");
-      }
-      if (openingTimes.WEDNESDAY != null) {
-        buffer.write(
-            "${LocaleKeys.basket_avaibleTimes_wednesday.locale}\n${LocaleKeys.basket_avaibleTimes_open.locale} : ${openingTimes.WEDNESDAY!.first.start} - ${LocaleKeys.basket_avaibleTimes_close.locale} : ${openingTimes.WEDNESDAY!.first.end}\n");
-      }
-      if (openingTimes.THURSDAY != null) {
-        buffer.write(
-            "${LocaleKeys.basket_avaibleTimes_thursday.locale}\n${LocaleKeys.basket_avaibleTimes_open.locale} : ${openingTimes.THURSDAY!.first.start} - ${LocaleKeys.basket_avaibleTimes_close.locale} : ${openingTimes.THURSDAY!.first.end}\n");
-      }
-      if (openingTimes.FRIDAY != null) {
-        buffer.write(
-            "${LocaleKeys.basket_avaibleTimes_friday.locale}\n${LocaleKeys.basket_avaibleTimes_open.locale} : ${openingTimes.FRIDAY!.first.start} - ${LocaleKeys.basket_avaibleTimes_close.locale} : ${openingTimes.FRIDAY!.first.end}\n");
-      }
-      if (openingTimes.SATURDAY != null) {
-        buffer.write(
-            "${LocaleKeys.basket_avaibleTimes_saturday.locale}\n${LocaleKeys.basket_avaibleTimes_open.locale} : ${openingTimes.SATURDAY!.first.start} - ${LocaleKeys.basket_avaibleTimes_close.locale} : ${openingTimes.SATURDAY!.first.end}\n");
-      }
+    final openingTimes = model.openingTimes.standardOpeningTimes;
+
+    if (openingTimes.SUNDAY != null) {
+      buffer.write(
+          "${LocaleKeys.basket_avaibleTimes_sunday.locale}\n${LocaleKeys.basket_avaibleTimes_open.locale} : ${openingTimes.SUNDAY!.first.start} - ${LocaleKeys.basket_avaibleTimes_close.locale} : ${openingTimes.SUNDAY!.first.end}\n");
     }
+    if (openingTimes.MONDAY != null) {
+      buffer.write(
+          "${LocaleKeys.basket_avaibleTimes_monday.locale}\n${LocaleKeys.basket_avaibleTimes_open.locale} : ${openingTimes.MONDAY!.first.start} - ${LocaleKeys.basket_avaibleTimes_close.locale} : ${openingTimes.MONDAY!.first.end}\n");
+    }
+    if (openingTimes.TUESDAY != null) {
+      buffer.write(
+          "${LocaleKeys.basket_avaibleTimes_thursday.locale}\n${LocaleKeys.basket_avaibleTimes_open.locale} : ${openingTimes.TUESDAY!.first.start} - ${LocaleKeys.basket_avaibleTimes_close.locale} : ${openingTimes.TUESDAY!.first.end}\n");
+    }
+    if (openingTimes.WEDNESDAY != null) {
+      buffer.write(
+          "${LocaleKeys.basket_avaibleTimes_wednesday.locale}\n${LocaleKeys.basket_avaibleTimes_open.locale} : ${openingTimes.WEDNESDAY!.first.start} - ${LocaleKeys.basket_avaibleTimes_close.locale} : ${openingTimes.WEDNESDAY!.first.end}\n");
+    }
+    if (openingTimes.THURSDAY != null) {
+      buffer.write(
+          "${LocaleKeys.basket_avaibleTimes_thursday.locale}\n${LocaleKeys.basket_avaibleTimes_open.locale} : ${openingTimes.THURSDAY!.first.start} - ${LocaleKeys.basket_avaibleTimes_close.locale} : ${openingTimes.THURSDAY!.first.end}\n");
+    }
+    if (openingTimes.FRIDAY != null) {
+      buffer.write(
+          "${LocaleKeys.basket_avaibleTimes_friday.locale}\n${LocaleKeys.basket_avaibleTimes_open.locale} : ${openingTimes.FRIDAY!.first.start} - ${LocaleKeys.basket_avaibleTimes_close.locale} : ${openingTimes.FRIDAY!.first.end}\n");
+    }
+    if (openingTimes.SATURDAY != null) {
+      buffer.write(
+          "${LocaleKeys.basket_avaibleTimes_saturday.locale}\n${LocaleKeys.basket_avaibleTimes_open.locale} : ${openingTimes.SATURDAY!.first.start} - ${LocaleKeys.basket_avaibleTimes_close.locale} : ${openingTimes.SATURDAY!.first.end}\n");
+    }
+
     return buffer.toString();
   }
 

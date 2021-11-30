@@ -6,9 +6,9 @@ part 'opening_times_model.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class OpeningTimes {
-  StandardOpeningTimes? standardOpeningTimes;
+  final StandardOpeningTimes standardOpeningTimes;
 
-  OpeningTimes({this.standardOpeningTimes});
+  OpeningTimes({required this.standardOpeningTimes});
 
   factory OpeningTimes.fromJson(Map<String, dynamic> json) =>
       _$OpeningTimesFromJson(json);

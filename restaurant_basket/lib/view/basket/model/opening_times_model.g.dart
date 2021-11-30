@@ -8,14 +8,12 @@ part of 'opening_times_model.dart';
 
 OpeningTimes _$OpeningTimesFromJson(Map<String, dynamic> json) {
   return OpeningTimes(
-    standardOpeningTimes: json['standardOpeningTimes'] == null
-        ? null
-        : StandardOpeningTimes.fromJson(
-            json['standardOpeningTimes'] as Map<String, dynamic>),
+    standardOpeningTimes: StandardOpeningTimes.fromJson(
+        json['standardOpeningTimes'] as Map<String, dynamic>),
   );
 }
 
 Map<String, dynamic> _$OpeningTimesToJson(OpeningTimes instance) =>
     <String, dynamic>{
-      'standardOpeningTimes': instance.standardOpeningTimes?.toJson(),
+      'standardOpeningTimes': instance.standardOpeningTimes.toJson(),
     };

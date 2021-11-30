@@ -11,11 +11,11 @@ RestaurantModel _$RestaurantModelFromJson(Map<String, dynamic> json) {
     id: json['id'] as int,
     name: json['name'] as String,
     phoneNumber: json['phoneNumber'] as String,
-    currency: json['currency'] as String,
-    locale: json['locale'] as String,
     timezone: json['timezone'] as String,
     location: Location.fromJson(json['location'] as Map<String, dynamic>),
     reviewScore: json['reviewScore'] as String,
+    openingTimes:
+        OpeningTimes.fromJson(json['openingTimes'] as Map<String, dynamic>),
     tagGroups: (json['tagGroups'] as List<dynamic>)
         .map((e) =>
             e == null ? null : TagGroups.fromJson(e as Map<String, dynamic>))
@@ -24,9 +24,7 @@ RestaurantModel _$RestaurantModelFromJson(Map<String, dynamic> json) {
         .map((e) =>
             e == null ? null : Images.fromJson(e as Map<String, dynamic>))
         .toList(),
-    bookable: json['bookable'] as bool,
-    openingTimes:
-        OpeningTimes.fromJson(json['openingTimes'] as Map<String, dynamic>),
+    currency: json['currency'] as String?,
   );
 }
 
@@ -35,13 +33,11 @@ Map<String, dynamic> _$RestaurantModelToJson(RestaurantModel instance) =>
       'id': instance.id,
       'name': instance.name,
       'phoneNumber': instance.phoneNumber,
-      'currency': instance.currency,
-      'locale': instance.locale,
       'timezone': instance.timezone,
       'location': instance.location.toJson(),
       'reviewScore': instance.reviewScore,
+      'openingTimes': instance.openingTimes.toJson(),
       'tagGroups': instance.tagGroups.map((e) => e?.toJson()).toList(),
       'images': instance.images.map((e) => e?.toJson()).toList(),
-      'bookable': instance.bookable,
-      'openingTimes': instance.openingTimes.toJson(),
+      'currency': instance.currency,
     };

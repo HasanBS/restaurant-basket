@@ -9,5 +9,4 @@ abstract class IBasketService {
 
   Future<MerchantsResponseModel?> fetchRestaurantList(
       RequestModel requestModel);
-  Future<MerchantsResponseModel?> fetchRestaurant(int id);
 }

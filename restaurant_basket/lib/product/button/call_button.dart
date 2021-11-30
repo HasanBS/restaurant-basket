@@ -1,6 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import '../../core/components/text/auto_locale_text.dart';
+import 'package:restaurant_basket/core/components/text/auto_locale_text.dart';
 import '../../core/init/lang/locale_keys.g.dart';
 import '../../view/basket/model/restaurant_model.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -21,11 +21,11 @@ class CallButton extends ElevatedButton {
                 ),
               ),
               AutoLocaleText(
-                value: "${LocaleKeys.basket_number} ",
+                value: LocaleKeys.basket_number,
                 style: context.textTheme.bodyText1,
               ),
               AutoSizeText(
-                model.phoneNumber,
+                " ${model.phoneNumber}",
                 style: context.textTheme.bodyText1!.apply(
                   decoration: TextDecoration.underline,
                 ),

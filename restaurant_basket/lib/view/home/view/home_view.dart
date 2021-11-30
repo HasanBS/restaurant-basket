@@ -37,7 +37,7 @@ class HomeView extends StatelessWidget {
               place: CityConstants.instance.cities[index].cityText,
               language: context.deviceLocale.toString(),
               limit: AppConstants.PAGELOADLIMIT,
-              offset: 0);
+              offset: AppConstants.STARTOFFSET);
           NavigationService.instance.navigateToPage(
               path: NavigationConstants.BASKET, data: requestModel);
         },
