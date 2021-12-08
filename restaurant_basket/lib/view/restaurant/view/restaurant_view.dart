@@ -1,12 +1,14 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:restaurant_basket/view/restaurant/cubit/restaurant_cubit.dart';
 import '../../../core/components/text/auto_locale_text.dart';
 import '../../../core/extension/context_extension.dart';
 import '../../../core/init/lang/locale_keys.g.dart';
 import '../../../product/button/call_button.dart';
 import '../../../product/button/navigation_button.dart';
 import '../../../product/appbar/custom_appbar.dart';
-import '../model/restaurant_model.dart';
+import '../../basket/model/restaurant_model.dart';
 import '../../../core/extension/string_extension.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -16,9 +18,12 @@ class RestaurantView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: _customAppbar(context),
-      body: _body(context),
+    return BlocProvider(
+      create: (_) => RestaurantCubit(model.images),
+      child: Scaffold(
+        appBar: _customAppbar(context),
+        body: _body(context),
+      ),
     );
   }
 
@@ -26,18 +31,22 @@ class RestaurantView extends StatelessWidget {
     return CustomAppBar(context, model: model);
   }
 
-  Padding _body(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(
-          horizontal: context.mediumValueW, vertical: context.normalValueH),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Flexible(flex: 3, child: _restaurantInfo(context)),
-          Flexible(flex: 4, child: _avaibleTimes(context))
-        ],
-      ),
+  BlocBuilder _body(BuildContext context) {
+    return BlocBuilder<RestaurantCubit, RestaurantState>(
+      builder: (context, state) {
+        return Padding(
+          padding: EdgeInsets.symmetric(
+              horizontal: context.mediumValueW, vertical: context.normalValueH),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Flexible(flex: 3, child: _restaurantInfo(context)),
+              Flexible(flex: 4, child: _avaibleTimes(context))
+            ],
+          ),
+        );
+      },
     );
   }
 

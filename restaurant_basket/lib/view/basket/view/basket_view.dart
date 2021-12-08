@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:restaurant_basket/view/basket/service/ibasket_service.dart';
 import '../../../core/components/text/auto_locale_text.dart';
 import '../../../core/init/lang/locale_keys.g.dart';
 
@@ -17,12 +18,15 @@ import '../model/restaurant_model.dart';
 class BasketView extends StatelessWidget {
   final RequestModel requestModel;
   final ScrollController _scrollController = ScrollController();
+
   BasketView({Key? key, required this.requestModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (_) => BasketCubit(requestModel)..loadPage(),
+        create: (_) => BasketCubit(
+              requestModel,
+            )..loadPage(),
         child: Scaffold(
           appBar: _appBar,
           body: _body(context),

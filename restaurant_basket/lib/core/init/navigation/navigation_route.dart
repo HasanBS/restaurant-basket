@@ -5,7 +5,7 @@ import '../../../product/model/request/request_model.dart';
 import '../../../view/Splash/view/splash_view.dart';
 import '../../../view/basket/model/restaurant_model.dart';
 import '../../../view/basket/view/basket_view.dart';
-import '../../../view/basket/view/restaurant_view.dart';
+import '../../../view/restaurant/view/restaurant_view.dart';
 import '../../../view/home/view/home_view.dart';
 import '../../components/card/not_found_navigation_widget.dart';
 import '../../constants/navigation/navigation_constants.dart';
@@ -32,9 +32,6 @@ class NavigationRoute {
       case NavigationConstants.RESTAURANT:
         return normalNavigate(
             RestaurantView(model: args.arguments! as RestaurantModel));
-
-      // case NavigationConstants.COUNTDOWNPAGE:
-      //   return normalNavigate(CountdownPageView(model: args.arguments! as CountdownModel));
 
       default:
         return MaterialPageRoute(

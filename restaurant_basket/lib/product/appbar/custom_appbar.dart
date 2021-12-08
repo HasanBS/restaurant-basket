@@ -1,6 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-import '../../core/constants/image/image_constatns.dart';
 import '../../core/extension/context_extension.dart';
 import '../../view/basket/model/restaurant_model.dart';
 
@@ -18,20 +18,12 @@ class CustomAppBar extends PreferredSize {
                 alignment: AlignmentDirectional.bottomCenter,
                 children: [
                   ClipRRect(
-                    borderRadius: const BorderRadius.vertical(
-                        bottom: Radius.circular(34)),
-                    child: FadeInImage(
-                      height: Size.fromHeight(
-                        context.dynamicHeight(0.3),
-                      ).aspectRatio,
-                      width: context.width,
-                      fit: BoxFit.cover,
-                      image: NetworkImage(
-                        model.images[index]!.url!,
+                    child: Center(
+                      child: CachedNetworkImage(
+                        imageUrl: model.images[index]!.url!,
+                        fit: BoxFit.cover,
+                        fadeOutDuration: Duration.zero,
                       ),
-                      placeholder: AssetImage(context.isDarkTheme
-                          ? ImageConstants.instance.restImgDark
-                          : ImageConstants.instance.restImgLight),
                     ),
                   ),
                   Row(
@@ -65,9 +57,6 @@ class CustomAppBar extends PreferredSize {
                 ],
               ),
             ),
-            shape: const RoundedRectangleBorder(
-                borderRadius:
-                    BorderRadius.vertical(bottom: Radius.circular(34))),
           ),
         );
 }

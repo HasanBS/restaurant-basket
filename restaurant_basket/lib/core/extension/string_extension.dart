@@ -90,24 +90,16 @@ extension RestaurantModelExtension on RestaurantModel {
     String currency;
     switch (model.currency) {
       case "EUR":
-        {
-          currency = "€";
-        }
+        currency = "€";
         break;
       case "AUD":
-        {
-          currency = "\$";
-        }
+        currency = "\$";
         break;
       case "TRY":
-        {
-          currency = "₺";
-        }
+        currency = "₺";
         break;
       case "GBP":
-        {
-          currency = "£";
-        }
+        currency = "£";
         break;
 
       default:
@@ -122,24 +114,16 @@ extension RestaurantModelExtension on RestaurantModel {
       for (var i = 0; i < tagList.length; i++) {
         switch (tagList[i].name) {
           case "price high class":
-            {
-              buffer.write(currency + currency + currency + currency);
-            }
+            buffer.write(currency + currency + currency + currency);
             break;
           case "price upscale":
-            {
-              buffer.write(currency + currency + currency);
-            }
+            buffer.write(currency + currency + currency);
             break;
           case "price average":
-            {
-              buffer.write(currency + currency);
-            }
+            buffer.write(currency + currency);
             break;
           case "price cheap":
-            {
-              buffer.write(currency);
-            }
+            buffer.write(currency);
             break;
           default:
         }

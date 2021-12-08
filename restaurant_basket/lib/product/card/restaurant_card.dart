@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../core/constants/image/image_constatns.dart';
@@ -21,19 +22,31 @@ class RestaurantCard extends Card {
             children: <Widget>[
               Row(
                 children: [
-                  FadeInImage(
-                    height: imgSize ?? context.dynamicHeight(0.15),
-                    width: imgSize ?? context.dynamicHeight(0.15),
-                    fit: BoxFit.cover,
-                    image: NetworkImage(model.images.isNotEmpty
-                        ? model.images.first!.url!
-                        : context.isDarkTheme
-                            ? 'https://raw.githubusercontent.com/HasanBS/Abacus-App/main/assets/basketImgDark.png'
-                            : 'https://raw.githubusercontent.com/HasanBS/Abacus-App/main/assets/basketImgLight.png'),
-                    placeholder: AssetImage(context.isDarkTheme
-                        ? ImageConstants.instance.basketImgDark
-                        : ImageConstants.instance.basketImgLight),
-                  ),
+                  if (model.images.isNotEmpty)
+                    CachedNetworkImage(
+                      height: imgSize ?? context.dynamicHeight(0.15),
+                      width: imgSize ?? context.dynamicHeight(0.15),
+                      imageUrl: model.images.first!.url!,
+                      fit: BoxFit.cover,
+                      placeholder: (contex, url) {
+                        return Image.asset(
+                          context.isDarkTheme
+                              ? ImageConstants.instance.restImgDark
+                              : ImageConstants.instance.restImgLight,
+                          fit: BoxFit.cover,
+                        );
+                      },
+                      fadeOutDuration: Duration.zero,
+                    )
+                  else
+                    Image.asset(
+                      context.isDarkTheme
+                          ? ImageConstants.instance.restImgDark
+                          : ImageConstants.instance.restImgLight,
+                      fit: BoxFit.cover,
+                      height: imgSize ?? context.dynamicHeight(0.15),
+                      width: imgSize ?? context.dynamicHeight(0.15),
+                    ),
                   SizedBox(
                     width: context.dynamicWidth(0.76) -
                         (imgSize ?? context.dynamicHeight(0.15)),
