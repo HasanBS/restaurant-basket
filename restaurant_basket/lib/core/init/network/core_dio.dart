@@ -4,7 +4,7 @@ import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import '../../base/model/ibase_model.dart';
 import '../../constants/enum/http_request_enum.dart';
-import 'package:restaurant_basket/core/base/model/ibase_model.dart';
+import '../../base/model/ibase_model.dart';
 
 import '../../base/model/base_error.dart';
 import 'icore_dio.dart';

@@ -21,38 +21,37 @@ class CustomAppBar extends PreferredSize {
                     child: Center(
                       child: CachedNetworkImage(
                         imageUrl: model.images[index]!.url!,
-                        fit: BoxFit.cover,
+                        imageBuilder: (context, imageProvider) => Container(
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: imageProvider, fit: BoxFit.fill),
+                          ),
+                        ),
                         fadeOutDuration: Duration.zero,
                       ),
                     ),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      ListView.builder(
-                        itemCount: model.images.length,
-                        shrinkWrap: true,
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (context, listIndex) {
-                          return Align(
-                            alignment: Alignment.bottomCenter,
-                            child: Padding(
-                              padding: context.paddingLow,
-                              child: CircleAvatar(
-                                backgroundColor: index == listIndex
-                                    ? context.colorScheme.background
-                                    : context.colorScheme.background
-                                        .withOpacity(0.5),
-                                radius: index == listIndex
-                                    ? context.dynamicWidth(0.015)
-                                    : context.dynamicWidth(0.01),
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                    ],
+                  ListView.builder(
+                    itemCount: model.images.length,
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, listIndex) {
+                      return Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Padding(
+                          padding: context.paddingLow,
+                          child: CircleAvatar(
+                            backgroundColor: index == listIndex
+                                ? context.colorScheme.background
+                                : context.colorScheme.background
+                                    .withOpacity(0.5),
+                            radius: index == listIndex
+                                ? context.dynamicWidth(0.015)
+                                : context.dynamicWidth(0.01),
+                          ),
+                        ),
+                      );
+                    },
                   )
                 ],
               ),

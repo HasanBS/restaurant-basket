@@ -1,7 +1,9 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:restaurant_basket/view/restaurant/cubit/restaurant_cubit.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
+import '../cubit/restaurant_cubit.dart';
+import '../service/image_service.dart';
 import '../../../core/components/text/auto_locale_text.dart';
 import '../../../core/extension/context_extension.dart';
 import '../../../core/init/lang/locale_keys.g.dart';
@@ -12,18 +14,30 @@ import '../../basket/model/restaurant_model.dart';
 import '../../../core/extension/string_extension.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+class RestaurantPage extends StatelessWidget {
+  final RestaurantModel model;
+
+  const RestaurantPage({Key? key, required this.model}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (_) =>
+          RestaurantCubit(model.images, ImageService(DefaultCacheManager())),
+      child: RestaurantView(model: model),
+    );
+  }
+}
+
 class RestaurantView extends StatelessWidget {
   final RestaurantModel model;
   const RestaurantView({Key? key, required this.model}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => RestaurantCubit(model.images),
-      child: Scaffold(
-        appBar: _customAppbar(context),
-        body: _body(context),
-      ),
+    return Scaffold(
+      appBar: _customAppbar(context),
+      body: _body(context),
     );
   }
 
@@ -63,7 +77,7 @@ class RestaurantView extends StatelessWidget {
               Flexible(
                   flex: 2,
                   child: AutoSizeText(model.priceString,
-                      style: context.textTheme.bodyText2)),
+                      maxLines: 1, style: context.textTheme.bodyText2)),
               Flexible(
                   flex: 8,
                   child: AutoSizeText(model.name,
@@ -71,7 +85,7 @@ class RestaurantView extends StatelessWidget {
               Flexible(
                   flex: 2,
                   child: AutoSizeText('${model.reviewScore.intString}/6',
-                      style: context.textTheme.bodyText2)),
+                      maxLines: 1, style: context.textTheme.bodyText2)),
             ],
           ),
         ),

@@ -3,12 +3,13 @@ import 'dart:typed_data';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
-import 'package:restaurant_basket/view/basket/model/images_model.dart';
+import '../../basket/model/images_model.dart';
 
 import 'iimage_service.dart';
 
 class ImageService extends IImageService {
-  ImageService() : super();
+  ImageService(DefaultCacheManager cacheManager) : super(cacheManager);
+
   @override
   Future<void> cacheImages(List<Images?> imgList) async {
     for (var i = 0; i < imgList.length; i++) {
@@ -16,7 +17,7 @@ class ImageService extends IImageService {
 
       final List<int> list = utf8.encode(response.data.toString());
 
-      await DefaultCacheManager().putFile(
+      await cacheManager.putFile(
         imgList[i]!.url!.split('.jpg')[0],
         Uint8List.fromList(list),
         fileExtension: "jpg",
